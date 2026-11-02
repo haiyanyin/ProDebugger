@@ -99,9 +99,9 @@ function videoDialog() {
 // any stage size.
 const SHOTS = [
   ["trajectory", "Trajectory", "Debugger decisions linked to agent steps", caseHref(DEMO_REF, "trajectory", "step", 4)],
-  ["facts", "DSL Facts", "Agent log compiled into facts, S04 lineage traced", caseHref(DEMO_REF, "graph", "facts", 48), "#0d131a"],
-  ["rules", "Rule Checks", "Rule violations grounded in cited facts", caseHref(DEMO_REF, "graph", "rules"), "#0d131a"],
-  ["root-cause", "Root Cause", "Selected hypothesis, evidence and repair", caseHref(DEMO_REF, "result"), "#080b0f"],
+  ["facts", "Agent Debugging", "Trace execution logs to investigate the source of failure", caseHref(DEMO_REF, "graph", "facts", 48), "#0d131a"],
+  ["rules", "ProDebugger", "Evidence-driven investigation", caseHref(DEMO_REF, "graph", "rules"), "#fffefa"],
+  ["root-cause", "Key Features", "Focused investigation. Inspectable evidence. Configurable checks.", caseHref(DEMO_REF, "result"), "#fffefa"],
 ];
 
 // The original GIF composition, packaged as a same-origin static interactive view.
@@ -113,6 +113,19 @@ function heroShots() {
       <div class="shot-stage">
         ${SHOTS.map(([id, label, caption, href, bg]) => id === "trajectory"
           ? `<div class="shot" data-shot="${id}"><iframe src="${CLOUD_PREVIEW}" title="Interactive evidence cloud" style="display:block;width:100%;height:100%;border:0" loading="eager"></iframe></div>`
+          : id === "facts"
+          ? `<a class="shot" href="./img/illustrations/agent-debugging.png" target="_blank" rel="noopener" data-shot="${id}" style="background:#fffefa" aria-label="Expand agent debugging illustration"><img src="./img/illustrations/agent-debugging.png" width="1672" height="941" alt="Agent systems generate timestamped text logs. Debugging traces back from a late failure to an earlier mistake." loading="lazy"></a>`
+          : id === "rules"
+          ? `<a class="shot shot-comparison" href="./img/illustrations/programmable-debugging-v2.png" target="_blank" rel="noopener" data-shot="${id}" aria-label="Expand programmable debugging comparison">
+            <div class="shot-comparison-image"><img src="./img/illustrations/programmable-debugging-v2.png" width="1672" height="941" alt="LLM-based diagnosis compared with ProDebugger: cross-step evidence graph, programmable DSL interface, and adaptive workflow with multiple evidence paths." loading="lazy"></div>
+          </a>`
+          : id === "root-cause"
+          ? `<section class="shot shot-benefits" data-shot="${id}" aria-label="ProDebugger key features">
+            <div class="benefit-row">${icon('<path d="m13 2-9 12h7l-1 8L21 9h-8z"/>')}<div><h3>Faster diagnosis <span>✓</span></h3><p>Targeted queries bring relevant evidence into focus.</p></div></div>
+            <div class="benefit-row">${icon(CAPABILITY_ICONS.checks)}<div><h3>Trustworthy decisions <span>✓</span></h3><p>Inspect the source records behind each diagnosis.</p></div></div>
+            <div class="benefit-row">${icon('<path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3"/><circle cx="15" cy="17" r="3"/>')}<div><h3>Customizable checks <span>✓</span></h3><p>Define explicit checks around your task requirements.</p></div></div>
+            <div class="benefit-row">${icon('<rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><path d="M6 9v3h12V9M12 12v3"/>')}<div><h3>Scalable investigation <span>✓</span></h3><p>Investigate long trajectories through targeted evidence queries.</p></div></div>
+          </section>`
           : `<a class="shot" href="${href}" data-shot="${id}" style="background:${bg}">
           <img src="./img/shots/${id}.webp?v=20261102" width="1400" height="960" alt="${label} view: ${caption}" loading="lazy"></a>`).join("")}
       </div>
@@ -234,7 +247,7 @@ export function mountHome(root) {
         <div class="hero-copy" data-reveal-group>
           <div class="hero-eyebrow"><span></span> Evidence-grounded agent debugging</div>
           <h1 class="hero-title"><img class="hero-title-mark" src="./img/prodebugger-mark-animated.svg" width="96" height="96" alt="" aria-hidden="true"><span class="hero-title-word">Pro<em>Debugger</em></span></h1>
-          <p class="hero-subtitle">Evidence-Grounded Debugging of LLM Agent Trajectories</p>
+          <p class="hero-subtitle">Programmable agentic debugging system for LLM agents</p>
           <p class="hero-sub">Investigate why an agent failed. Inspect candidate explanations and the recorded evidence behind them.</p>
           ${STATIC ? projectLinks() : ""}
           ${heroCapabilities()}

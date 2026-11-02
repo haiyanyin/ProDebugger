@@ -2,7 +2,7 @@
 // opens the workbench; #/chat[/<group>/<trajectory>] opens the chat page.
 import {esc} from "./util.js?v=27bf1baa85";
 import {parseRoute, runsHref} from "./routes.js?v=27bf1baa85";
-import {mountHome} from "./pages/home.js?v=links-b596342864";
+import {mountHome} from "./pages/home.js?v=1784257c07";
 import {mountRuns} from "./pages/runs.js?v=27bf1baa85";
 import {mountChat} from "./pages/chat.js?v=27bf1baa85";
 import {mountWorkbench} from "./pages/workbench.js?v=links-b596342864";
